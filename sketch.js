@@ -99,7 +99,7 @@ function draw() {
       textSize(vScale);
       text(hanzi[hanidx], x * vScale, y * vScale);
     }
-    image(jhimg, 0, 10);
+    image(jhimg, 0, 30);
   }
 
   //console.log('bing');

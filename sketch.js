@@ -41,21 +41,27 @@ const hanzi = [
   "",
 ];
 let jhimg;
+let title;
+let stamp;
 
 function preload() {
-  jhimg = loadImage("jiehuo.png");
+  title = loadImage("title.png");
+  stamp = loadImage("stamp.png");
 }
 function setup() {
   createCanvas(windowWidth, windowHeight); // larger canvas to draw to
+  imageMode(CENTER);
 
   if (width < height) {
     vScale = width / 30; // vScale tied to window width so it can work on phone and computer
     console.log("by width");
-    jhimg.resize(width, 0);
+    title.resize(width * 0.8, 0);
+    stamp.resize(width * 0.29, 0);
   } else {
     vScale = floor(height / 30);
     console.log("by height");
-    jhimg.resize(width, height);
+    title.resize(width * 0.8, 0);
+    stamp.resize(width * 0.29, 0);
   }
   pixelDensity(1);
   myvideo = createCapture(VIDEO);
@@ -64,6 +70,7 @@ function setup() {
   // video dom element , the source, will be smaller by vScale which is 40 by 30 to improve performance
   frameRate(5);
   textAlign(LEFT, TOP);
+  angleMode(DEGREES);
 }
 
 function draw() {
@@ -99,7 +106,12 @@ function draw() {
       textSize(vScale);
       text(hanzi[hanidx], x * vScale, y * vScale);
     }
-    image(jhimg, 0, 30);
+    image(title, width / 2, title.height * 0.7);
+    push();
+    translate(width - stamp.width * 0.75, height - height / 4);
+    rotate(10);
+    image(stamp, 0, 0);
+    pop();
   }
 
   //console.log('bing');
